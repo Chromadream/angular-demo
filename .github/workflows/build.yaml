@@ -15,3 +15,12 @@ jobs:
         run: npm install
       - name: Build project
         run: npm run build
+      - name: Run tests
+        run: npm test
+      - name: Test Report
+        uses: dorny/test-reporter@dc3a92680fcc15842eef52e8c4606ea7ce6bd3f3
+        if: ${{ !cancelled() }}
+        with:
+          name: Unit tests
+          path: reports/jest-*.xml
+          reporter: jest-junit
