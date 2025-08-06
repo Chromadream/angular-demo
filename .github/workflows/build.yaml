@@ -13,6 +13,8 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
+      - name: run linters
+        uses: ./.github/actions/run-linters
       - name: Build project
         run: npm run build
       - name: Run tests

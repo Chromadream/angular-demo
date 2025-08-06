@@ -1,0 +1,16 @@
+name: "Run Linters"
+description: "Composite action to run necessary linters."
+runs:
+  using: "composite"
+  steps:
+    - name: Validate current commit message with commitlint
+      run: npx commitlint --last --verbose
+      shell: bash
+    - name: Validate code style with Prettier
+      if: ${{ always() }}
+      run: npx prettier --check .
+      shell: bash
+    - name: Validate code style with ESLint
+      if: ${{ always() }}
+      run: npx eslint .
+      shell: bash
